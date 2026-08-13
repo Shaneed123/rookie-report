@@ -1,0 +1,86 @@
+<html>
+<head>
+</head>
+<style>
+    html {
+        font-family: "Helvetica", "Arial", sans-serif;
+    }
+    h1 {
+        text-align: center;
+    }
+    tr :nth-child(2),
+    tr :nth-child(3) {
+    text-align: left;
+    width: 40%;
+    }
+
+    tr :nth-child(1) {
+    text-align: left;
+    width: 10%;
+    }
+
+    tfoot tr :nth-child(1) {
+    text-align: right;
+    }
+
+    tfoot tr :nth-child(2) {
+    text-align: left;
+    }
+    th,
+    td {
+        vertical-align: top;
+        padding: 0.3em;
+    }
+    tbody:nth-child(odd) {
+        background-color: #eeeeee;
+    }
+    tfoot {
+        border-top: 1px solid #999999;
+    }
+    table {
+        table-layout: fixed;
+        width: 90%;
+        margin: 10px auto;
+        border-collapse: collapse;
+        border-top: 1px solid #999999;
+        border-bottom: 1px solid #999999;
+    }
+    caption {
+        padding: 1em;
+        font-style: italic;
+        caption-side: bottom;
+        letter-spacing: 1px;
+    }
+</style>
+<body>
+    <h1>Rookie Report!</h1>
+    <table>
+        <caption>
+            Current Rookie Rankings
+        </caption>
+
+        <thead>
+            <tr>
+                <th scope="col">Draft Order</th>
+                <th scope="col">Player</th>
+                <th scope="col">Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th scope="row">1</th>
+            <td>AJ Dybansta</td>
+            <td>Washington Wizards</td>
+        </tbody>
+        <tbody>
+            <th scope="row">2</th>
+            <td>Darren Peterson</td>
+            <td>Utah Jazz</td>
+        </tbody>
+        <tbody>
+            <th scope="row">3</th>
+            <td>Cam Boozer</td>
+            <td>Memphis Grizzlies</td>
+        </tbody>
+    </table>
+</body>
+</html>
