@@ -1,31 +1,43 @@
-<html>
+<!DOCTYPE html>
+
 <head>
 </head>
 <style>
     html {
         font-family: "Helvetica", "Arial", sans-serif;
     }
+
     h1 {
         text-align: center;
     }
-    tr :nth-child(n+2) {
-    text-align: right;
+
+    p {
+        text-align: left;
     }
+
+    tr:not(.expandable-row) :nth-child(n+2) {
+        text-align: right;
+    }
+
     tr:not(.expandable-row) :nth-child(1) {
         text-align: left;
         width: 10%
     }
+
     th,
     td {
         vertical-align: top;
         padding: 0.3em;
     }
+
     tbody tr:nth-child(odd of .clickable-row) {
         background-color: #eeeeee;
     }
+
     tbody tr:nth-child(odd of .clickable-row):hover {
         background-color: #5e5e5e;
     }
+
     table {
         table-layout: fixed;
         width: 90%;
@@ -34,149 +46,396 @@
         border-top: 1px solid #999999;
         border-bottom: 1px solid #999999;
     }
+
     caption {
         padding: 1em;
         font-style: italic;
         caption-side: bottom;
         letter-spacing: 1px;
     }
+
     .breakdown {
         background-color: #eeeeee;
+        max-width: 800px;
+        margin: 0 auto;
     }
+
     .clickable-row {
         cursor: pointer;
     }
+
     .clickable-row:hover {
         background-color: #5e5e5e;
     }
+
     .expandable-row {
         display: none;
     }
+
     .expandable-row.is-open {
         display: table-row;
     }
+
+    .tabs {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .tabs button:hover {
+        background-color: #5e5e5e;
+    }
+
+    .tabs button.active {
+        background-color: #ccc;
+    }
+
+    .tabcontent {
+        display: none;
+    }
 </style>
+
 <body>
     <h1>Rookie Report!</h1>
-    <table>
-        <caption>
-            Current Rookie Rankings
-        </caption>
-        <thead>
-            <tr>
-                <th scope="col">Draft Order</th>
-                <th scope="col">Player</th>
-                <th scope="col">Age</th>
-                <th scope="col">Height</th>
-                <th scope="col">Weight</th>
-                <th scope="col">College</th>
-                <th scope="col">Team</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="clickable-row" onclick="toggleRow('row1')">
-                <th scope="row">1</th>
-                <td>AJ Dybansta</td>
-                <td>19</td>
-                <td>6'9</td>
-                <td>210</td>
-                <td>BYU</td>
-                <td>Washington Wizards</td>
-            </tr>
-            <tr id="row1" class="expandable-row">
-                <td colspan="7">
-                    <article class="breakdown">
-                        <h4>AJ Dybansta</h4>
-                        <time datetime="2026-08-05">Aug 05</time>
-                        <br>
-                            After one of the most productive offensive freshman seasons in recent college basketball history, AJ Dybantsa entered the NBA Draft as the consensus No. 1 overall pick. His lone season at BYU was nothing short of spectacular, but the biggest question surrounding his game remains the same: Will his scoring translate to the NBA?     
+
+    <div class="tabs">
+        <button class="tablinks active" onclick="openTab(event, 'teams')">Team Ranking</button>
+        <button class="tablinks" onclick="openTab(event, 'rookies')">Rookie Ranking</button>
+        <button class="tablinks" onclick="openTab(event, 'awards')">Award Race</button>
+    </div>
+
+    <div id="teams" class="tabcontent" style="display: block;">
+        Team Rankings!
+    </div>
+
+    <div id="rookies" class="tabcontent">
+        <table>
+            <caption>
+                Current Rookie Rankings
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Draft Order</th>
+                    <th scope="col">Player</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">College</th>
+                    <th scope="col">Team</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="clickable-row" onclick="toggleRow('row1')">
+                    <th scope="row">1</th>
+                    <td>AJ Dybansta</td>
+                    <td>19</td>
+                    <td>6'9</td>
+                    <td>210</td>
+                    <td>BYU</td>
+                    <td>Washington Wizards</td>
+                </tr>
+                <tr id="row1" class="expandable-row">
+                    <td colspan="7">
+                        <article class="breakdown">
+                            <p>
+                                After one of the most productive offensive freshman seasons in recent college basketball
+                                history, AJ Dybantsa entered the NBA Draft as the consensus No. 1 overall pick. His lone
+                                season at BYU was nothing short of spectacular, but the biggest question surrounding his
+                                game remains the same: Will his scoring translate to the NBA?
+                            </p>
                             Looking at both the numbers and the film, I think the answer is yes.
-                            Dybantsa immediately became the centerpiece of BYU's offense, taking on the role of primary scorer from day one. Despite carrying an enormous workload, he thrived, posting a 33.5% usage rate, which ranked 12th nationally. Even with opposing defenses built around stopping him, he consistently found ways to score.
-                            What makes Dybantsa such an intriguing prospect is not just how many points he scored. It is how he scored them.
-                            He was one of the nation's best shot creators, particularly from the midrange. He ranked in the 99th percentile on unassisted midrange two point attempts while placing in the 95th percentile in unassisted makes at the rim. Those numbers highlight something NBA scouts value immensely: the ability to create offense without relying on teammates to generate easy looks.
-                            His blend of size, patience, and change of pace allows him to get to his spots almost effortlessly. Whether attacking downhill or pulling up over defenders, Dybantsa rarely looked rushed. That composure translated into one of the nation's best free throw profiles as well. He ranked seventh nationally in free throw attempts and ultimately made more free throws than any player in college basketball. Players who consistently get to the line tend to have a high scoring floor, and Dybantsa is no exception.
+                            Dybantsa immediately became the centerpiece of BYU's offense, taking on the role of primary
+                            scorer from day one. Despite carrying an enormous workload, he thrived, posting a 33.5%
+                            usage
+                            rate, which ranked 12th nationally. Even with opposing defenses built around stopping him,
+                            he
+                            consistently found ways to score.
+                            What makes Dybantsa such an intriguing prospect is not just how many points he scored. It is
+                            how
+                            he scored them.
+                            He was one of the nation's best shot creators, particularly from the midrange. He ranked in
+                            the
+                            99th percentile on unassisted midrange two point attempts while placing in the 95th
+                            percentile
+                            in unassisted makes at the rim. Those numbers highlight something NBA scouts value
+                            immensely:
+                            the ability to create offense without relying on teammates to generate easy looks.
+                            His blend of size, patience, and change of pace allows him to get to his spots almost
+                            effortlessly. Whether attacking downhill or pulling up over defenders, Dybantsa rarely
+                            looked
+                            rushed. That composure translated into one of the nation's best free throw profiles as well.
+                            He
+                            ranked seventh nationally in free throw attempts and ultimately made more free throws than
+                            any
+                            player in college basketball. Players who consistently get to the line tend to have a high
+                            scoring floor, and Dybantsa is no exception.
                             Of course, no prospect is without flaws.
-                            While Dybantsa is certainly capable of making the right read, he has a noticeable score first mentality. More often than not, his first instinct is to attack rather than facilitate. Whether that is simply a result of BYU asking him to shoulder such a massive offensive burden or a genuine limitation in his game remains to be seen. Fortunately, the passing flashes are there, making this more of a question than a glaring weakness.
-                            The biggest statistical concern is his three point shooting. Dybantsa connected on 33.1 percent of his attempts from beyond the arc, a respectable number but not one that immediately projects elite shooting at the next level. Interestingly, he was actually more efficient shooting off the dribble than on catch and shoot opportunities, suggesting he is more comfortable creating his own rhythm than simply spacing the floor.
-                            That makes his NBA fit particularly interesting. Playing alongside a ball dominant point guard like Trae Young will require an adjustment. Dybantsa will not have the ball in his hands nearly as often as he did at BYU, and developing as an off ball threat could determine just how quickly he reaches his ceiling.
-                            Defensively, Dybantsa has all the physical tools teams look for. His size, length, athleticism, and mobility give him the potential to defend multiple positions. However, those tools did not always translate into consistent rim protection or disruptive playmaking in college. He did not record many blocks, though he also avoided unnecessary fouls. As he gains experience, I would like to see him become more aggressive using his length to contest shots and impact the game defensively.
-                            Overall, I believe AJ Dybantsa has the highest offensive ceiling in this draft class. There may be an adjustment period early in his NBA career as he adapts to a smaller offensive role and learns to play alongside established creators, but that is expected for most young stars.
-                            If everything comes together, I think his ceiling falls somewhere between pre injury Paul George and a more downhill Carmelo Anthony. That is an incredibly high bar, but Dybantsa possesses the shot creation, scoring versatility, and physical tools to give himself a legitimate chance of reaching it.
-                            For a Washington Wizards franchise desperate to find its next cornerstone, AJ Dybantsa has all the makings of the superstar they have been searching for.
-                    </article>
-                </td>
-            </tr>
-            <tr class="clickable-row" onclick="toggleRow('row2')">
-                <th scope="row">2</th>
-                <td>Darren Peterson</td>
-                <td>19</td>
-                <td>6'4.5</td>
-                <td>199</td>
-                <td>Kansas</td>
-                <td>Utah Jazz</td>
-            </tr>
-            <tr id="row2" class="expandable-row">
-                <td colspan="7">
-                    <article class="breakdown">
-                        <h4>Darren Peterson</h4>
-                        <time datetime="2026-08-12">Aug 12</time>
-                        <br>
-                        Peterson entered the draft after a somewhat unusual season at Kansas. He dealt with full body cramping throughout early September of 2025, which he described as “traumatic,” and it prevented him from finishing multiple games throughout the season. One thing was certain when Peterson was on the floor, though: he impacted the game on both sides of the ball for Kansas.
-                        Peterson is simply undeniable as a scorer. He posted a 33.5 percent usage rate in his rookie season, tying him for 12th in the nation with the number one pick, AJ Dybantsa. But what immediately jumps off the page when watching Peterson is just how good of a defender he is, both on and off the ball.
-                        Peterson has extremely active hands and is constantly looking to jump passing lanes and create steals. He also ranked in the 80th percentile in block percentage, not just among guards but among all players. That is a pretty strong indication that he has the versatility to become a switchable defender at the next level. I believe Peterson is the best defensive guard in the entire class, and the numbers would suggest the same. He finished in the 95th percentile in defensive plus minus.
-                        On the offensive side, Peterson was an absolute knockdown shooter off the ball, shooting 43 percent on catch and shoot threes. Kansas clearly recognized this strength, as 65 percent of his three point attempts came on catch and shoot opportunities.
-                        The positives for Peterson are exactly what a modern NBA general manager is looking for. He is a legitimate three and D shooting guard joining a Utah Jazz team that needs both. Utah ranked in the bottom five in the league in both three point shooting and perimeter defense last season. Peterson should immediately address two of their biggest weaknesses.
-                        However, I see a lot of people wanting Peterson to become something he simply isn't during the pre draft process. We've seen comparisons to Anthony Edwards, Donovan Mitchell, and even Kobe Bryant, but I don't see that type of player in Peterson's game.
-                        As great as Peterson is at the things he specializes in, he is not the downhill attacker or athlete that those players are. His vertical leap measured 37.5 inches at the combine, which was relatively average for an NBA prospect. His finishing around the rim also left something to be desired. He shot just 59 percent at the rim, putting him in the bottom 30th percentile among all players.
-                        Peterson also struggled as a playmaker, finishing in the bottom 13th percentile in usage rate to assist ratio. That further reinforces the idea that his best role in the NBA may not be as a primary creator.
-                        So where does that leave Peterson?
-                        I believe he will be at his best playing primarily off the ball. The things he does well, he does exceptionally well. He may be both the best pure shooter and one of the best perimeter defenders on the board. But his game does have limitations, and I think trying to force him into a role that requires him to create offense at a high level could ultimately work against his strengths.
-                        Instead, I see a lot of Bradley Beal in his game. Peterson could carve out a very valuable role by running off pin downs, knocking down threes, attacking closeouts, and making the right pass enough of the time when the defense takes away his shot. I believe he could do that at an all star level.
-                        One thing is for certain: this is a safe pick for Utah as long as Peterson's health concerns were simply a string of bad luck during his time at Kansas. If he can stay healthy, I think the Jazz are getting a player who can immediately contribute while filling two of the biggest needs on their roster.
-                        He may never become Anthony Edwards or Donovan Mitchell, but he doesn't need to. If Peterson becomes an elite three point shooter, a high level perimeter defender, and a reliable secondary offensive option, he could become exactly the type of player every successful NBA team needs.
-                    </article>
-                </td>
-            </tr>
-            <tr class="clickable-row" onclick="toggleRow('row3')">
-                <th scope="row">3</th>
-                <td>Cam Boozer</td>
-                <td>18</td>
-                <td>6'8</td>
-                <td>253</td>
-                <td>Duke</td>
-                <td>Memphis Grizzlies</td>
-            </tr>
-            <tr id="row3" class="expandable-row">
-                <td colspan="7">
-                    <article class="breakdown">
-                        <h4>Darren Peterson</h4>
-                        <time datetime="2026-08-12">Aug 12</time>
-                        <br>
-                        Son of former Bulls power forward Carlos Boozer, Cameron Boozer entered the draft after one year at Duke at just 18 years old. Boozer was nothing short of amazing during his time with the Blue Devils, leading the nation in double-doubles with 22 on his way to sweeping the National Player of the Year awards and leading Duke to an Elite Eight appearance.
-                        Boozer has easily become one of the most polarizing players among the top four prospects, and much of that debate comes from the physical nature of his game. Boozer played mostly bully ball for the Blue Devils and was extremely efficient doing so, finishing in the 99th percentile on shots around the rim. However, he was far from one-dimensional. Boozer knocked down 39 percent of his three-point attempts, which is more than enough to force NBA defenses to respect him from beyond the arc.
-                        What really stands out about Boozer is his basketball IQ. In almost every aspect of his game, he seemed intentional about creating efficient shots and making the correct play. His offensive profile was built around the types of shots that have become increasingly valuable during the NBA's three-point revolution: getting to the rim and knocking down threes.
-                        Boozer also displayed an impressive ability to create for others. He finished in the 97th percentile in assist percentage while still taking care of the ball, ranking in the 91st percentile in assists relative to his usage. For an 18-year-old forward, that combination of playmaking and decision-making is extremely encouraging.
-                        His rebounding numbers are just as impressive. As mentioned earlier, Boozer led the nation in double-doubles and finished in the 96th percentile in rebounds per game and the 97th percentile in offensive rebound percentage. He has a great feel for where to be on the glass and consistently puts himself in position to create extra possessions for his team.
-                        Defensively, Boozer was just as productive on the perimeter especially.He ranked in the 98th percentile in defensive plus-minus and around the 80th percentile in steals. He has shown that he can impact the game without needing the ball in his hands, whether that is by defending, rebounding, or simply being in the right position.
-                        So what gives?
-                        Boozer appears to check almost every box. An 18-year-old high-IQ forward who can score, rebound, defend, pass, and space the floor sounds like an obvious No. 1 pick. The concerns surrounding Boozer come from a couple of different places.
-                        The biggest question is whether the way Boozer scored around the rim in college will translate to the NBA. He was able to overpower and bully his way to the basket against college defenders, but NBA bigs are bigger, stronger, and more athletic. There are also questions about whether Boozer has the athleticism necessary to become a true star at the next level.
-                        His vertical was measured at just 35 inches, while his sprint testing came in around the 30th percentile. Boozer simply isn't the pure athlete that some of the other lottery prospects are. The lack of explosiveness could potentially cap his ceiling if he isn't able to consistently get to his spots and finish around the basket against NBA athletes.
-                        I believe Boozer will have no problem adjusting to the next level.
-                        We've seen undersized bigs and physically limited forwards(Bam,Randle,Love) become extremely valuable NBA players because of their feel, skill, and ability to play through contact. With everything else Boozer brings to the table, I have a hard time believing he won't find a valuable role in winning basketball.
-                        Boozer is arguably the most well-rounded and NBA-ready player in the group. He may never be the guy who rises above the defense and throws down a huge dunk over a seven-footer, but that doesn't mean he can't become an extremely impactful player.
-                        Boozer is the type of player who seems to make the right play 99 out of 100 times. He can score efficiently, move the ball, space the floor, rebound at a high level, and defend without needing to dominate possessions. That makes him someone who should be able to contribute to winning basketball almost immediately. Think If they put Lebron’s brain in Julius Randle's body.
-                        I see a player who could fit extremely well with the Grizzlies. Memphis desperately needs another player capable of organizing the offense and making decisions with the ball after trading star guard Ja Morant, and Boozer's ability to play both on and off the ball would give them another dynamic alongside Zach Edey.
-                        I don't think Boozer needs to become an elite athlete to succeed. His game is built on intelligence, skill, positioning, efficiency, and physicality. If those traits translate, Boozer could be one of the safest bets in this draft to become a high-level NBA player from day one.                               
-                    </article>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                            While Dybantsa is certainly capable of making the right read, he has a noticeable score
+                            first
+                            mentality. More often than not, his first instinct is to attack rather than facilitate.
+                            Whether
+                            that is simply a result of BYU asking him to shoulder such a massive offensive burden or a
+                            genuine limitation in his game remains to be seen. Fortunately, the passing flashes are
+                            there,
+                            making this more of a question than a glaring weakness.
+                            The biggest statistical concern is his three point shooting. Dybantsa connected on 33.1
+                            percent
+                            of his attempts from beyond the arc, a respectable number but not one that immediately
+                            projects
+                            elite shooting at the next level. Interestingly, he was actually more efficient shooting off
+                            the
+                            dribble than on catch and shoot opportunities, suggesting he is more comfortable creating
+                            his
+                            own rhythm than simply spacing the floor.
+                            That makes his NBA fit particularly interesting. Playing alongside a ball dominant point
+                            guard
+                            like Trae Young will require an adjustment. Dybantsa will not have the ball in his hands
+                            nearly
+                            as often as he did at BYU, and developing as an off ball threat could determine just how
+                            quickly
+                            he reaches his ceiling.
+                            Defensively, Dybantsa has all the physical tools teams look for. His size, length,
+                            athleticism,
+                            and mobility give him the potential to defend multiple positions. However, those tools did
+                            not
+                            always translate into consistent rim protection or disruptive playmaking in college. He did
+                            not
+                            record many blocks, though he also avoided unnecessary fouls. As he gains experience, I
+                            would
+                            like to see him become more aggressive using his length to contest shots and impact the game
+                            defensively.
+                            Overall, I believe AJ Dybantsa has the highest offensive ceiling in this draft class. There
+                            may
+                            be an adjustment period early in his NBA career as he adapts to a smaller offensive role and
+                            learns to play alongside established creators, but that is expected for most young stars.
+                            If everything comes together, I think his ceiling falls somewhere between pre injury Paul
+                            George
+                            and a more downhill Carmelo Anthony. That is an incredibly high bar, but Dybantsa possesses
+                            the
+                            shot creation, scoring versatility, and physical tools to give himself a legitimate chance
+                            of
+                            reaching it.
+                            For a Washington Wizards franchise desperate to find its next cornerstone, AJ Dybantsa has
+                            all
+                            the makings of the superstar they have been searching for.
+                        </article>
+                    </td>
+                </tr>
+                <tr class="clickable-row" onclick="toggleRow('row2')">
+                    <th scope="row">2</th>
+                    <td>Darren Peterson</td>
+                    <td>19</td>
+                    <td>6'4.5</td>
+                    <td>199</td>
+                    <td>Kansas</td>
+                    <td>Utah Jazz</td>
+                </tr>
+                <tr id="row2" class="expandable-row">
+                    <td colspan="7">
+                        <article class="breakdown">
+                            Peterson entered the draft after a somewhat unusual season at Kansas. He dealt with full
+                            body
+                            cramping throughout early September of 2025, which he described as “traumatic,” and it
+                            prevented
+                            him from finishing multiple games throughout the season. One thing was certain when Peterson
+                            was
+                            on the floor, though: he impacted the game on both sides of the ball for Kansas.
+                            Peterson is simply undeniable as a scorer. He posted a 33.5 percent usage rate in his rookie
+                            season, tying him for 12th in the nation with the number one pick, AJ Dybantsa. But what
+                            immediately jumps off the page when watching Peterson is just how good of a defender he is,
+                            both
+                            on and off the ball.
+                            Peterson has extremely active hands and is constantly looking to jump passing lanes and
+                            create
+                            steals. He also ranked in the 80th percentile in block percentage, not just among guards but
+                            among all players. That is a pretty strong indication that he has the versatility to become
+                            a
+                            switchable defender at the next level. I believe Peterson is the best defensive guard in the
+                            entire class, and the numbers would suggest the same. He finished in the 95th percentile in
+                            defensive plus minus.
+                            On the offensive side, Peterson was an absolute knockdown shooter off the ball, shooting 43
+                            percent on catch and shoot threes. Kansas clearly recognized this strength, as 65 percent of
+                            his
+                            three point attempts came on catch and shoot opportunities.
+                            The positives for Peterson are exactly what a modern NBA general manager is looking for. He
+                            is a
+                            legitimate three and D shooting guard joining a Utah Jazz team that needs both. Utah ranked
+                            in
+                            the bottom five in the league in both three point shooting and perimeter defense last
+                            season.
+                            Peterson should immediately address two of their biggest weaknesses.
+                            However, I see a lot of people wanting Peterson to become something he simply isn't during
+                            the
+                            pre draft process. We've seen comparisons to Anthony Edwards, Donovan Mitchell, and even
+                            Kobe
+                            Bryant, but I don't see that type of player in Peterson's game.
+                            As great as Peterson is at the things he specializes in, he is not the downhill attacker or
+                            athlete that those players are. His vertical leap measured 37.5 inches at the combine, which
+                            was
+                            relatively average for an NBA prospect. His finishing around the rim also left something to
+                            be
+                            desired. He shot just 59 percent at the rim, putting him in the bottom 30th percentile among
+                            all
+                            players.
+                            Peterson also struggled as a playmaker, finishing in the bottom 13th percentile in usage
+                            rate to
+                            assist ratio. That further reinforces the idea that his best role in the NBA may not be as a
+                            primary creator.
+                            So where does that leave Peterson?
+                            I believe he will be at his best playing primarily off the ball. The things he does well, he
+                            does exceptionally well. He may be both the best pure shooter and one of the best perimeter
+                            defenders on the board. But his game does have limitations, and I think trying to force him
+                            into
+                            a role that requires him to create offense at a high level could ultimately work against his
+                            strengths.
+                            Instead, I see a lot of Bradley Beal in his game. Peterson could carve out a very valuable
+                            role
+                            by running off pin downs, knocking down threes, attacking closeouts, and making the right
+                            pass
+                            enough of the time when the defense takes away his shot. I believe he could do that at an
+                            all
+                            star level.
+                            One thing is for certain: this is a safe pick for Utah as long as Peterson's health concerns
+                            were simply a string of bad luck during his time at Kansas. If he can stay healthy, I think
+                            the
+                            Jazz are getting a player who can immediately contribute while filling two of the biggest
+                            needs
+                            on their roster.
+                            He may never become Anthony Edwards or Donovan Mitchell, but he doesn't need to. If Peterson
+                            becomes an elite three point shooter, a high level perimeter defender, and a reliable
+                            secondary
+                            offensive option, he could become exactly the type of player every successful NBA team
+                            needs.
+                        </article>
+                    </td>
+                </tr>
+                <tr class="clickable-row" onclick="toggleRow('row3')">
+                    <th scope="row">3</th>
+                    <td>Cam Boozer</td>
+                    <td>18</td>
+                    <td>6'8</td>
+                    <td>253</td>
+                    <td>Duke</td>
+                    <td>Memphis Grizzlies</td>
+                </tr>
+                <tr id="row3" class="expandable-row">
+                    <td colspan="7">
+                        <article class="breakdown">
+                            Son of former Bulls power forward Carlos Boozer, Cameron Boozer entered the draft after one
+                            year
+                            at Duke at just 18 years old. Boozer was nothing short of amazing during his time with the
+                            Blue
+                            Devils, leading the nation in double-doubles with 22 on his way to sweeping the National
+                            Player
+                            of the Year awards and leading Duke to an Elite Eight appearance.
+                            Boozer has easily become one of the most polarizing players among the top four prospects,
+                            and
+                            much of that debate comes from the physical nature of his game. Boozer played mostly bully
+                            ball
+                            for the Blue Devils and was extremely efficient doing so, finishing in the 99th percentile
+                            on
+                            shots around the rim. However, he was far from one-dimensional. Boozer knocked down 39
+                            percent
+                            of his three-point attempts, which is more than enough to force NBA defenses to respect him
+                            from
+                            beyond the arc.
+                            What really stands out about Boozer is his basketball IQ. In almost every aspect of his
+                            game, he
+                            seemed intentional about creating efficient shots and making the correct play. His offensive
+                            profile was built around the types of shots that have become increasingly valuable during
+                            the
+                            NBA's three-point revolution: getting to the rim and knocking down threes.
+                            Boozer also displayed an impressive ability to create for others. He finished in the 97th
+                            percentile in assist percentage while still taking care of the ball, ranking in the 91st
+                            percentile in assists relative to his usage. For an 18-year-old forward, that combination of
+                            playmaking and decision-making is extremely encouraging.
+                            His rebounding numbers are just as impressive. As mentioned earlier, Boozer led the nation
+                            in
+                            double-doubles and finished in the 96th percentile in rebounds per game and the 97th
+                            percentile
+                            in offensive rebound percentage. He has a great feel for where to be on the glass and
+                            consistently puts himself in position to create extra possessions for his team.
+                            Defensively, Boozer was just as productive on the perimeter especially.He ranked in the 98th
+                            percentile in defensive plus-minus and around the 80th percentile in steals. He has shown
+                            that
+                            he can impact the game without needing the ball in his hands, whether that is by defending,
+                            rebounding, or simply being in the right position.
+                            So what gives?
+                            Boozer appears to check almost every box. An 18-year-old high-IQ forward who can score,
+                            rebound,
+                            defend, pass, and space the floor sounds like an obvious No. 1 pick. The concerns
+                            surrounding
+                            Boozer come from a couple of different places.
+                            The biggest question is whether the way Boozer scored around the rim in college will
+                            translate
+                            to the NBA. He was able to overpower and bully his way to the basket against college
+                            defenders,
+                            but NBA bigs are bigger, stronger, and more athletic. There are also questions about whether
+                            Boozer has the athleticism necessary to become a true star at the next level.
+                            His vertical was measured at just 35 inches, while his sprint testing came in around the
+                            30th
+                            percentile. Boozer simply isn't the pure athlete that some of the other lottery prospects
+                            are.
+                            The lack of explosiveness could potentially cap his ceiling if he isn't able to consistently
+                            get
+                            to his spots and finish around the basket against NBA athletes.
+                            I believe Boozer will have no problem adjusting to the next level.
+                            We've seen undersized bigs and physically limited forwards(Bam,Randle,Love) become extremely
+                            valuable NBA players because of their feel, skill, and ability to play through contact. With
+                            everything else Boozer brings to the table, I have a hard time believing he won't find a
+                            valuable role in winning basketball.
+                            Boozer is arguably the most well-rounded and NBA-ready player in the group. He may never be
+                            the
+                            guy who rises above the defense and throws down a huge dunk over a seven-footer, but that
+                            doesn't mean he can't become an extremely impactful player.
+                            Boozer is the type of player who seems to make the right play 99 out of 100 times. He can
+                            score
+                            efficiently, move the ball, space the floor, rebound at a high level, and defend without
+                            needing
+                            to dominate possessions. That makes him someone who should be able to contribute to winning
+                            basketball almost immediately. Think If they put Lebron’s brain in Julius Randle's body.
+                            I see a player who could fit extremely well with the Grizzlies. Memphis desperately needs
+                            another player capable of organizing the offense and making decisions with the ball after
+                            trading star guard Ja Morant, and Boozer's ability to play both on and off the ball would
+                            give
+                            them another dynamic alongside Zach Edey.
+                            I don't think Boozer needs to become an elite athlete to succeed. His game is built on
+                            intelligence, skill, positioning, efficiency, and physicality. If those traits translate,
+                            Boozer
+                            could be one of the safest bets in this draft to become a high-level NBA player from day
+                            one.
+                        </article>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="awards" class="tabcontent">
+        Award Rankings!
+    </div>
+
     <script>
         function toggleRow(rowId) {
             document.getElementById(rowId).classList.toggle('is-open');
         }
+
+        function openTab(event, tabName) {
+            let tabcontents = document.getElementsByClassName("tabcontent");
+            for (const tab of tabcontents) {
+                tab.style.display = "none";
+            }
+            let tablinks = document.getElementsByClassName("tablinks");
+            for (const link of tablinks) {
+                link.classList.remove('active');
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.classList.toggle('active');
+
+        }
     </script>
 </body>
+
 </html>
